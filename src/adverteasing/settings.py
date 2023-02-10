@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'api',
     'accounts.apps.AccountsConfig',
     'users.apps.UsersConfig',
     'teasers.apps.TeasersConfig',
