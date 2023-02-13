@@ -2,7 +2,7 @@
 name = "projectx"
 version = "0.1.0"
 description = ""
-authors = ["IvanVinitskyi <ivan.vinitskyi@uprisehealth.com>"]
+authors = ["vvvin333 <333vvvin@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
