@@ -10,6 +10,16 @@ from teasers.models import Teaser
 router = Router(tags=["teasers"])
 
 
+@router.get(
+    "/",
+    response=list[schemas.Teaser],
+)
+def get_teasers(
+    _: HttpRequest,
+) -> list[Teaser]:
+    return Teaser.objects.all()
+
+
 @router.patch(
     "/paid",
     response=list[schemas.Teaser],
@@ -44,13 +54,3 @@ def set_denied_teasers(
     )
     teasers.update(status=StatusChoices.denied)
     return teasers
-
-
-@router.get(
-    "/",
-    response=list[schemas.Teaser],
-)
-def get_teasers(
-    _: HttpRequest,
-) -> list[Teaser]:
-    return Teaser.objects.all()
