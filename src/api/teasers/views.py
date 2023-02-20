@@ -1,3 +1,4 @@
+from django.db.models import Prefetch
 from django.http import HttpRequest
 from ninja import Router
 
@@ -34,8 +35,15 @@ def set_paid_teasers(
         author__teaser__status=StatusChoices.pending,
     ).select_related(
         "teaser_price"
-    ).prefetch_related("author__teasers")
-
+    ).prefetch_related(
+        Prefetch(
+            "author__teasers",
+            queryset=Teaser.objects.filter(
+                pk__in=teaser_ids,
+                status=StatusChoices.pending,
+            )
+        )
+    ).distinct()
     return pay_for_teasers(accounts)
 
 
