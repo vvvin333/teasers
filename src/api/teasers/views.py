@@ -17,7 +17,7 @@ router = Router(tags=["teasers"])
 def get_teasers(
     _: HttpRequest,
 ) -> list[Teaser]:
-    return Teaser.objects.all()
+    return Teaser.objects.select_related("author__account").all()
 
 
 @router.patch(
